@@ -48,3 +48,10 @@ git remote add origin git@github.com:waru0/back-app-pedidos.git
 ```
 git remote -v
 ```
+
+-Por ultimo: para subir del repositorio local al rewmoto
+
+```
+git push -u origin master
+
+```
