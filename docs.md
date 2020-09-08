@@ -2,7 +2,7 @@
 
 ## Iniciar un repositorio local
 
--solo para iniciar el proyecto desde cero
+- solo para iniciar el proyecto desde cero
 
 ```
 git init
