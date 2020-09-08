@@ -1,6 +1,6 @@
 # COMANDOS GIT
 
-## iniciar un repositorio local
+## Iniciar un repositorio local
 
 -solo para iniciar el proyecto desde cero
 
@@ -10,7 +10,7 @@ git init
 # Initialized empty Git repository in /Users/waru/Desktop/app-pedidos/.git/
 ```
 
--para cuando ya existe el proyecto
+- Para cuando ya existe el proyecto
 
 ```
 git clone <direccion remota>
@@ -20,4 +20,31 @@ git clone <direccion remota>
 
 ```
 git status
+```
+
+- Para agregar a la zona intermedia(INDEX)
+
+```
+git add .
+```
+
+- Para agregar al area de espera (HEAD)
+
+```
+git commit -m "Primer commit"
+```
+
+### Ahora ya estamos preparados para subir al repositorio remoto
+
+- Si quieres conectar tu repositorio local a un repositorio remoto:
+
+```
+git remote add origin <server>
+git remote add origin git@github.com:waru0/back-app-pedidos.git
+```
+
+- Para verificar direcciones remotas
+
+```
+git remote -v
 ```
