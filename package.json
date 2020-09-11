@@ -9,7 +9,7 @@
     "serve": "node dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Waru",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
