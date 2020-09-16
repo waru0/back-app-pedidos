@@ -2,7 +2,7 @@ const clienteController = require("./../controllers/clienteController");
 const productoController = require("./../controllers/productoController");
 const pedidoController = require("./../controllers/pedidoController");
 const usuarioController = require("./../controllers/usuarioController");
-
+const authController = require("../controllers/authController");
 /**
  * Necesita enviar app de express
  * @param {module} app:express
@@ -10,9 +10,9 @@ const usuarioController = require("./../controllers/usuarioController");
 
 module.exports.rutas = (app) => {
   //rutas de login
-
+  app.post("/login", authController.login);
   //rutas de usuario
-
+  app.post("/usuario", usuarioController.agregar);
   //rutas de Cliente
   app.get("/cliente", clienteController.listar);
   app.get("/cliente/:id", clienteController.mostrar);
@@ -36,9 +36,9 @@ module.exports.rutas = (app) => {
 
   //rutas Usuario
   //rutas de Pedidos
-  app.get("/usuario", usuarioController.listar);
-  app.get("/usuario/:id", usuarioController.mostrar);
+  //app.get("/usuario", usuarioController.listar);
+  //app.get("/usuario/:id", usuarioController.mostrar);
   app.post("/usuario", usuarioController.agregar);
-  app.put("/usuario/:id", usuarioController.modificar);
-  app.delete("/usuario/:id", usuarioController.eliminar);
+  //app.put("/usuario/:id", usuarioController.modificar);
+  //app.delete("/usuario/:id", usuarioController.eliminar);
 };

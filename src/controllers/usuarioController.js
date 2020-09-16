@@ -1,23 +1,30 @@
-const listar = function (req, res) {
-  res.json({ mensaje: "Lista de Usuarios" });
-};
-const mostrar = function (req, res) {
-  res.json({ mensaje: "Mostrar de Usuarios" });
-};
-const agregar = function (req, res) {
-  res.json({ mensaje: "Guardar de Usuarios" });
-};
-const modificar = function (req, res) {
-  res.json({ mensaje: "Modificar de Usuarios" });
-};
-const eliminar = function (req, res) {
-  res.json({ mensaje: "Eliminar de Usuarios" });
+const Usuario = require("./../models/Usuario");
+const bcrypt = require("bcrypt");
+const agregar = async (req, res) => {
+  var BCRYPT_SALT_ROUNDS = 12;
+  bcrypt
+    .hash(req.body.password, BCRYPT_SALT_ROUNDS)
+    .then(function (hashedPassword) {
+      console.log(hashedPassword);
+      req.body.password = hashedPassword;
+
+      const user = new Usuario(req.body);
+      user
+        .save()
+        .then((dato) => {
+          res.json({ mensaje: "Usuario registrado", dato });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.json({ mensaje: "Error al registrar el usuario", dato });
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ mensaje: "Error al cifrar la contraseña", dato });
+    });
 };
 
 module.exports = {
-  listar,
-  mostrar,
   agregar,
-  modificar,
-  eliminar,
 };

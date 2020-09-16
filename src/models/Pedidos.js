@@ -11,6 +11,6 @@ const PedidoSchema = new mongoose.Schema({
   monto_total: {
     type: Schema.Types.Decimal128,
   },
-});
+}  ,{ timestamps: true });
 
 module.exports = mongoose.model("Pedido", PedidoSchema, "pedido");

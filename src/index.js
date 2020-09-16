@@ -5,13 +5,14 @@ import mongoose from "mongoose";
 import port from "./config/config";
 //importando el modulo de rutas
 import { rutas } from "./routes/index.js";
-import { port as _port } from "./config/config";
 
 //CONFIGS
 const app = express();
 app.use(morgan("dev"));
-
-app.set("port", process.env.PORT || _port);
+app.set("port", process.env.PORT || port);
+// levantar servidor
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencodedapp.set("port", process.env.PORT || _port);
 //CONFIG DB
 mongoose
   .connect("mongodb://localhost:27017/app-pedido", {
