@@ -49,12 +49,17 @@ const modificar = async function (req, res) {
 
   console.log(dato);*/
   const clie = await cliente.findById(id);
-  const cliemod = await clie.update(req.body);
+  const cliemod = await clie.updateOne(req.body);
   res.json({ mensaje: "cliente Modificado", cliemod });
 };
 
-const eliminar = function (req, res) {
-  res.json({ mensaje: "Eliminar de Clientes" });
+const eliminar = async function (req, res) {
+  try {
+    await cliente.findByIdAndDelete(req.params.id);
+  } catch (error) {
+    res.json({ mensaje: "no se pudo eliminar cliente" });
+    res.json({ mensaje: "Cliente ELiminado" });
+  }
 };
 
 module.exports = {

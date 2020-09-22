@@ -28,8 +28,8 @@ module.exports.rutas = (app) => {
   app.get("/producto", productoController.listarprod);
   app.get("/producto/:id", productoController.mostrar);
   app.post("/producto", productoController.agregar);
-  //app.put("/producto/:id", productoController.modificar);
-  //app.delete("/producto/:id", productoController.eliminar);
+  app.put("/producto/:id", productoController.modificar);
+  app.delete("/producto/:id", productoController.eliminar);
   //rutas de Pedidos
   app.get("/pedido", pedidoController.listar);
   app.get("/pedido/:id", pedidoController.mostrar);
