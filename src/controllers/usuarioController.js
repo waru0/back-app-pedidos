@@ -1,5 +1,22 @@
 const Usuario = require("./../models/Usuario");
 const bcrypt = require("bcrypt");
+
+const listar = async function (req, res) {
+  /* Cliente.find().then((datos) => {
+    res.json(datos);
+  });
+  /*.catch((err) => {
+      console.log("ERROR:", err);
+    });*/
+  try {
+    var datos = await Usuario.find();
+    res.json(datos);
+  } catch (error) {
+    console.log("ERROR:", error);
+  }
+
+  //res.json({ mensaje: "Lista de Clientes" });
+};
 const agregar = async (req, res) => {
   var BCRYPT_SALT_ROUNDS = 12;
   bcrypt
@@ -27,4 +44,5 @@ const agregar = async (req, res) => {
 
 module.exports = {
   agregar,
+  listar,
 };

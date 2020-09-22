@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("./../config/config");
 const login = async (req, res) => {
   //1. Verificar si el email esta registrado
-
   const user = await Usuario.findOne({ correo: req.body.correo });
   if (!user) {
     res.json({ mensaje: "Email inexistente" });
@@ -26,14 +25,13 @@ const login = async (req, res) => {
         usuario: {
           _id: user._id,
           usuario: user.usuario,
-          correo: user.email,
+          correo: user.correo,
           fecha: new Date(),
         },
       });
     } else {
       res.json({ mensaje: "contraseña incorrecta" });
     }
-    res.json({ mensaje: "Bienvenido" + req.body.email });
   }
   //2.
 };

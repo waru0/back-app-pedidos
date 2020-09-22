@@ -3,16 +3,20 @@ const productoController = require("./../controllers/productoController");
 const pedidoController = require("./../controllers/pedidoController");
 const usuarioController = require("./../controllers/usuarioController");
 const authController = require("../controllers/authController");
+
 /**
  * Necesita enviar app de express
  * @param {module} app:express
  */
 
+//Middlewares
+
+const authMiddleware = require("../middlewares/authMiddlewares");
+
 module.exports.rutas = (app) => {
   //rutas de login
   app.post("/login", authController.login);
   //rutas de usuario
-  app.post("/usuario", usuarioController.agregar);
   //rutas de Cliente
   app.get("/cliente", clienteController.listar);
   app.get("/cliente/:id", clienteController.mostrar);
@@ -21,12 +25,11 @@ module.exports.rutas = (app) => {
   app.delete("/cliente/:id", clienteController.eliminar);
 
   //rutas de Producto
-  app.get("/producto", productoController.listar);
+  app.get("/producto", productoController.listarprod);
   app.get("/producto/:id", productoController.mostrar);
   app.post("/producto", productoController.agregar);
-  app.put("/producto/:id", productoController.modificar);
-  app.delete("/producto/:id", productoController.eliminar);
-
+  //app.put("/producto/:id", productoController.modificar);
+  //app.delete("/producto/:id", productoController.eliminar);
   //rutas de Pedidos
   app.get("/pedido", pedidoController.listar);
   app.get("/pedido/:id", pedidoController.mostrar);
@@ -35,8 +38,7 @@ module.exports.rutas = (app) => {
   app.delete("/pedido/:id", pedidoController.eliminar);
 
   //rutas Usuario
-  //rutas de Pedidos
-  //app.get("/usuario", usuarioController.listar);
+  app.get("/usuario", authMiddleware.verificarAuth, usuarioController.listar);
   //app.get("/usuario/:id", usuarioController.mostrar);
   app.post("/usuario", usuarioController.agregar);
   //app.put("/usuario/:id", usuarioController.modificar);
