@@ -18,29 +18,73 @@ module.exports.rutas = (app) => {
   app.post("/login", authController.login);
   //rutas de usuario
   //rutas de Cliente
-  app.get("/cliente", clienteController.listar);
-  app.get("/cliente/:id", clienteController.mostrar);
-  app.post("/cliente", clienteController.agregar);
-  app.put("/cliente/:id", clienteController.modificar);
-  app.delete("/cliente/:id", clienteController.eliminar);
+  app.get("/cliente", authMiddleware.verificarAuth, clienteController.listar);
+  app.get(
+    "/cliente/:id",
+    authMiddleware.verificarAuth,
+    clienteController.mostrar
+  );
+  app.post("/cliente", authMiddleware.verificarAuth, clienteController.agregar);
+  app.put(
+    "/cliente/:id",
+    authMiddleware.verificarAuth,
+    clienteController.modificar
+  );
+  app.delete(
+    "/cliente/:id",
+    authMiddleware.verificarAuth,
+    clienteController.eliminar
+  );
 
   //rutas de Producto
-  app.get("/producto", productoController.listarprod);
-  app.get("/producto/:id", productoController.mostrar);
-  app.post("/producto", productoController.agregar);
-  app.put("/producto/:id", productoController.modificar);
-  app.delete("/producto/:id", productoController.eliminar);
+  app.get(
+    "/producto",
+    authMiddleware.verificarAuth,
+    productoController.listarprod
+  );
+  app.get(
+    "/producto/:id",
+    authMiddleware.verificarAuth,
+    productoController.mostrar
+  );
+  app.post(
+    "/producto",
+    authMiddleware.verificarAuth,
+    productoController.agregar
+  );
+  app.put(
+    "/producto/:id",
+    authMiddleware.verificarAuth,
+    productoController.modificar
+  );
+  app.delete(
+    "/producto/:id",
+    authMiddleware.verificarAuth,
+    productoController.eliminar
+  );
   //rutas de Pedidos
-  app.get("/pedido", pedidoController.listar);
-  app.get("/pedido/:id", pedidoController.mostrar);
-  app.post("/pedido", pedidoController.agregar);
-  app.put("/pedido/:id", pedidoController.modificar);
-  app.delete("/pedido/:id", pedidoController.eliminar);
+  app.get("/pedido", authMiddleware.verificarAuth, pedidoController.listar);
+  app.get(
+    "/pedido/:id",
+    authMiddleware.verificarAuth,
+    pedidoController.mostrar
+  );
+  app.post("/pedido", authMiddleware.verificarAuth, pedidoController.agregar);
+  app.put(
+    "/pedido/:id",
+    authMiddleware.verificarAuth,
+    pedidoController.modificar
+  );
+  app.delete(
+    "/pedido/:id",
+    authMiddleware.verificarAuth,
+    pedidoController.eliminar
+  );
 
   //rutas Usuario
   app.get("/usuario", authMiddleware.verificarAuth, usuarioController.listar);
   //app.get("/usuario/:id", usuarioController.mostrar);
-  app.post("/usuario", usuarioController.agregar);
+  app.post("/usuario", authMiddleware.verificarAuth, usuarioController.agregar);
   //app.put("/usuario/:id", usuarioController.modificar);
   //app.delete("/usuario/:id", usuarioController.eliminar);
 };

@@ -1,16 +1,20 @@
-const { mongoose, Schema } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const PedidoSchema = new mongoose.Schema({
-  cliente: { type: Schema.Types.ObjectId, ref: "Cliente" },
-  productos: [
-    {
-      producto: { type: Schema.Types.ObjectId, ref: "Producto" },
-      cantidad: { type: Number, min: 1, max: 100 },
+const PedidoSchema = new mongoose.Schema(
+  {
+    cliente: { type: Schema.ObjectId, ref: "Cliente" },
+    productos: [
+      {
+        producto: { type: Schema.ObjectId, ref: "Producto" },
+        cantidad: { type: Number, min: 1, max: 100 },
+      },
+    ],
+    monto_total: {
+      type: Number,
     },
-  ],
-  monto_total: {
-    type: Schema.Types.Decimal128,
   },
-}  ,{ timestamps: true });
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Pedido", PedidoSchema, "pedido");
